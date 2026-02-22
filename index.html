@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProSport Central</title>
+    <style>
+        /* CSS Variables for easy color swaps */
+        :root {
+            --bg-dark: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --accent-red: #ff3e3e;
+            --accent-blue: #007bff;
+            --text-light: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: #000;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        nav h1 { color: var(--accent-blue); margin: 0; }
+        nav h1 span { color: var(--accent-red); }
+
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: bold; }
+
+        /* Hero Section */
+        .hero {
+            height: 400px;
+            background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(0,123,255,0.3)), url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-blue);
+        }
+
+        .hero h2 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; }
+
+        /* Sports Grid */
+        .container { padding: 50px 5%; }
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .sport-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .sport-card:hover {
+            transform: translateY(-10px);
+            border-left-color: var(--accent-blue);
+        }
+
+        .sport-card h3 { color: var(--accent-blue); }
+        
+        .btn {
+            background: var(--accent-red);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>PRO<span>SPORT</span></h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Scores</a></li>
+            <li><a href="#">News</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h2>The Arena Awaits</h2>
+        <p>Live Scores | Breaking News | Expert Analysis</p>
+        <button class="btn">View All Matches</button>
+    </section>
+
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 40px;">Choose Your Sport</h2>
+        <div class="sports-grid">
+            <div class="sport-card">
+                <h3>Basketball</h3>
+                <p>NBA, EuroLeague, and more.</p>
+                <button class="btn">Explore</button>
+            </div>
+            <div class="sport-card">
+                <h3>Soccer</h3>
+                <p>Champions League & Premier League.</p>
+                <button class="btn">Explore</button>
+            </div>
+            <div class="sport-card">
+                <h3>Hockey</h3>
+                <p>NHL highlights and stats.</p>
+                <button class="btn">Explore</button>
+            </div>
+            <div class="sport-card">
+                <h3>Football</h3>
+                <p>NFL and College Football updates.</p>
+                <button class="btn">Explore</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProSport | Live Scores</title>
+    <style>
+        :root {
+            --bg-dark: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --accent-red: #ff3e3e;
+            --accent-blue: #007bff;
+            --text-light: #ffffff;
+            --border-gray: #333;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: #000;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        nav h1 { color: var(--accent-blue); margin: 0; font-style: italic; }
+        nav h1 span { color: var(--accent-red); }
+
+        /* Scoreboard Table Styles */
+        .scoreboard-container {
+            padding: 40px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-gray);
+        }
+
+        .score-table th {
+            background: var(--accent-blue);
+            padding: 15px;
+            text-align: left;
+            text-transform: uppercase;
+        }
+
+        .score-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .status {
+            color: var(--accent-red);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .score-val {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+        }
+
+        /* Re-using previous Hero and Grid styles */
+        .hero {
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 0 5% 50px 5%;
+        }
+
+        .sport-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 3px solid var(--accent-red);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>PRO<span>SPORT</span></h1>
+    </nav>
+
+    <section class="hero">
+        <h2 style="font-size: 3.5rem; margin: 0;">GAMEDAY CENTRAL</h2>
+        <p>Your source for real-time updates</p>
+    </section>
+
+    <div class="scoreboard-container">
+        <h2 style="border-left: 5px solid var(--accent-red); padding-left: 15px;">LIVE SCOREBOARD</h2>
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Sport</th>
+                    <th>Matchup</th>
+                    <th>Score</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Basketball</td>
+                    <td>Lakers vs. Celtics</td>
+                    <td class="score-val">102 - 98</td>
+                    <td class="status">4th Quarter</td>
+                </tr>
+                <tr>
+                    <td>Soccer</td>
+                    <td>Real Madrid vs. Barcelona</td>
+                    <td class="score-val">2 - 1</td>
+                    <td class="status">75'</td>
+                </tr>
+                <tr>
+                    <td>Hockey</td>
+                    <td>Rangers vs. Bruins</td>
+                    <td class="score-val">3 - 3</td>
+                    <td class="status">Overtime</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="sports-grid">
+        <div class="sport-card"><h3>NBA</h3></div>
+        <div class="sport-card"><h3>NFL</h3></div>
+        <div class="sport-card"><h3>NHL</h3></div>
+        <div class="sport-card"><h3>MLS</h3></div>
+    </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProSport | News & Scores</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --card-bg: #161616;
+            --accent-red: #e63946;
+            --accent-blue: #0066cc;
+            --text-gray: #b0b0b0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial Black', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        nav {
+            background: #000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--accent-red);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h1 { margin: 0; font-style: italic; color: var(--accent-blue); }
+        nav span { color: var(--accent-red); }
+
+        /* Scoreboard */
+        .score-section { padding: 20px 5%; background: #111; }
+        .score-table { width: 100%; border-collapse: collapse; background: var(--card-bg); }
+        .score-table th { background: var(--accent-blue); padding: 10px; text-align: left; }
+        .score-table td { padding: 12px; border-bottom: 1px solid #333; }
+        .live-dot { height: 8px; width: 8px; background: var(--accent-red); border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+        /* News Feed */
+        .news-container {
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* News is wider than the sidebar */
+            gap: 30px;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            border-bottom: 4px solid var(--accent-blue);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-content { padding: 20px; }
+        .news-tag { background: var(--accent-red); padding: 3px 8px; font-size: 12px; border-radius: 3px; }
+
+        /* Sidebar Stats */
+        .sidebar { background: #111; padding: 20px; border-radius: 5px; height: fit-content; }
+        
+        @media (max-width: 800px) {
+            .news-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h1>PRO<span>SPORT</span></h1>
+    <div style="color: white; font-size: 14px;">FEB 21, 2026</div>
+</nav>
+
+<div class="score-section">
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>LIVE GAMES</th>
+                <th>SCORE</th>
+                <th>TIME</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>LAKERS @ CELTICS</td>
+                <td><strong style="color: var(--accent-red);">112 - 110</strong></td>
+                <td><span class="live-dot"></span>FINAL</td>
+            </tr>
+            <tr>
+                <td>RANGERS @ BRUINS</td>
+                <td>2 - 2</td>
+                <td>2nd PER</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="news-container">
+    <div class="main-news">
+        <h2 style="border-left: 4px solid var(--accent-red); padding-left: 10px;">LATEST HEADLINES</h2>
+        
+        <div class="news-card">
+            <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1518063319789-7217e6706b04?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="news-content">
+                <span class="news-tag">BREAKING</span>
+                <h3>Championship Finals: Underdog Takes the Lead in Game 3</h3>
+                <p style="color: var(--text-gray);">In a stunning upset last night, the rookie-led squad managed to pull off a victory in the final seconds...</p>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="news-content">
+                <span class="news-tag" style="background: var(--accent-blue);">TRANSFER RUMORS</span>
+                <h3>Top Striker Spotted in London Ahead of Potential Trade</h3>
+                <p style="color: var(--text-gray);">Sources suggest a record-breaking deal is being finalized before the window closes tonight.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <h3>TOP SCORERS</h3>
+        <ol style="padding-left: 20px; color: var(--text-gray);">
+            <li>J. Smith (NBA) - 32.5 PPG</li>
+            <li>A. Garcia (MLS) - 14 Goals</li>
+            <li>M. Thompson (NHL) - 45 Assists</li>
+        </ol>
+        <hr border="1" color="#333">
+        <h3>UPCOMING</h3>
+        <p style="font-size: 14px;">Super Sunday: 8:00 PM EST</p>
+    </div>
+</div>
+
+</body>
+</html>
